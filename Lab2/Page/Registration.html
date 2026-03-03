@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<title>Patient Registration Form</title>
+
+<body>
+     <link rel="stylesheet" href="D:\AIUB\Spring 25-26\WebTechnology\WTech_Spring25-26\WebTech_R\Lab2 (HTML And CSS)\Design\Style.css"> 
+
+<div class="Header"> Patient Registration Home </div>
+<div class="topnav">
+    <a href="https://www.aiub.edu/"> AIUB Website </a>
+</div>
+
+
+<head>
+    <h1> Patient Registration Form (Admission) </h1>
+</head>
+
+<form>
+
+<label for ="PatientName">Patient Name: </label>
+<input type="text" id = "PatientName" name = "PatientName" placeholder="Enter The Name">
+<br><br>
+
+<label for = "Age">Patient Age: </label>
+<input type="number" id ="Age" name = "Age">
+<br><br>
+
+<label for ="DOB"> Date of Birth: </label>
+<input type ="date" id ="DOB" name = "PatientDOB">
+<br><br>
+
+<input type = "radio" id ="GenderMale" name="Gender" value ="Male">
+<label for ="GenderMale"> Male </label>
+
+<br><br>
+
+<input type = "radio" id ="GenderFemale" name="Gender" value ="Female">
+<label for ="GenderFemale"> Female </label>
+
+<br><br>
+<label for="Address">Patient Address: </label>
+<textarea id ="Address" name ="PatientAddress" rows="4" cols="20" placeholder="Enter The Address"></textarea>
+
+<br><br>
+
+<label for="Insertfile">Patient Previous Medical Document: </label>
+<input type ="file" id="file" name ="file"> 
+
+<br><br>
+
+<label for = "Doctor"> Prefered Doctor Department: </label>
+<select>
+    <option values ="Default"> </option>
+    <option values ="Skin">Skin Department </option>
+    <option values ="Medicine">Medicine Department </option>
+</select>
+<br><br>
+
+<input type="submit" id ="submit" name ="submit" value="LogIn ">
+
+<input type="button" id ="reset" name ="reset" value ="Reset ">
+
+</form>
+</body>
+
+</html>
