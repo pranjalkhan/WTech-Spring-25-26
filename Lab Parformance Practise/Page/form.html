@@ -14,34 +14,40 @@
             <table>
                 <!-- First & Last Name -->
                 <tr>
-                    <td><label for="fname">FIRST NAME</label></td>
-                    <td><label for="lname">LAST NAME</label></td>
-                </tr>
-                <tr>
-                    <td><input type="text" id="fname" name="fname"></td>
-                    <td><input type="text" id="lname" name="lname"></td>
+                    <td>
+                        <label for="fname">FIRST NAME</label><br>
+                        <input type="text" id="fname" name="fname">
+                        <span id="fnameError" class="error"></span>
+                    </td>
+                    <td>
+                        <label for="lname">LAST NAME</label><br>
+                        <input type="text" id="lname" name="lname">
+                        <span id="lnameError" class="error"></span>
+                    </td>
                 </tr>
 
                 <!-- Email & Phone -->
                 <tr>
-                    <td><label for="email">EMAIL</label></td>
-                    <td><label for="phone">PHONE NUMBER</label></td>
-                </tr>
-                <tr>
-                    <td><input type="text" id="email" name="email"></td>
-                    <td><input type="number" id="phone" name="phone"
-                            placeholder="Enter Phone Number"></td>
+                    <td>
+                        <label for="email">EMAIL</label><br>
+                        <input type="text" id="email" name="email">
+                        <span id="emailError" class="error"></span>
+                    </td>
+                    <td>
+                        <label for="phone">PHONE NUMBER</label><br>
+                        <input type="number" id="phone" name="phone">
+                        <span id="phoneError" class="error"></span>
+                    </td>
                 </tr>
 
                 <!-- Message -->
                 <tr>
-                    <td colspan="2"><label for="message">WHAT DO YOU HAVE IN
-                            MIND</label></td>
-                </tr>
-                <tr>
                     <td colspan="2">
+                        <label for="message">WHAT DO YOU HAVE IN
+                            MIND</label><br>
                         <textarea id="message" name="message" rows="4" cols="50"
                             placeholder="Please enter query..."></textarea>
+                        <span id="messageError" class="error"></span>
                     </td>
                 </tr>
 
@@ -51,11 +57,10 @@
                         <input type="submit" value="Submit">
                     </td>
                 </tr>
+
             </table>
         </form>
 
-        <p id="errorMsg" style="color:red; text-align:center;"></p>
-
-        <script src="script.js"></script>
+        <script src="../JS/script.js"></script>
     </body>
 </html>
