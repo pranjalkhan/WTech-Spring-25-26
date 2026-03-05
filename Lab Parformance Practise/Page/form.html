@@ -1,66 +1,61 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>Contact Us Form</title>
-<link rel="stylesheet" href="style.css">
-</head>
+<html lang="en">
+    <head>
+        <title>Contact Us Form</title>
+        <link rel="stylesheet"
+            href="E:\8th semester\WTech-Spring-25-26\Lab Parformance Practise\Design\style.css">
 
-<body>
+    </head>
+    <body>
 
-<div class="container">
+        <h1>Contact us</h1>
 
-<h2>Contact Us</h2>
+        <form id="contactForm">
+            <table>
+                <!-- First & Last Name -->
+                <tr>
+                    <td><label for="fname">FIRST NAME</label></td>
+                    <td><label for="lname">LAST NAME</label></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="fname" name="fname"></td>
+                    <td><input type="text" id="lname" name="lname"></td>
+                </tr>
 
-<form id="contactForm">
+                <!-- Email & Phone -->
+                <tr>
+                    <td><label for="email">EMAIL</label></td>
+                    <td><label for="phone">PHONE NUMBER</label></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="email" name="email"></td>
+                    <td><input type="number" id="phone" name="phone"
+                            placeholder="Enter Phone Number"></td>
+                </tr>
 
-<table>
+                <!-- Message -->
+                <tr>
+                    <td colspan="2"><label for="message">WHAT DO YOU HAVE IN
+                            MIND</label></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <textarea id="message" name="message" rows="4" cols="50"
+                            placeholder="Please enter query..."></textarea>
+                    </td>
+                </tr>
 
-<tr>
-<td>
-<label>First Name</label>
-<input type="text" id="fname">
-</td>
+                <!-- Submit -->
+                <tr>
+                    <td colspan="2" style="text-align:center;">
+                        <input type="submit" value="Submit">
+                    </td>
+                </tr>
+            </table>
+        </form>
 
-<td>
-<label>Last Name</label>
-<input type="text" id="lname">
-</td>
-</tr>
+        <p id="errorMsg" style="color:red; text-align:center;"></p>
 
-<tr>
-<td>
-<label>Email</label>
-<input type="email" id="email">
-</td>
-
-<td>
-<label>Phone Number</label>
-<input type="text" id="phone">
-</td>
-</tr>
-
-<tr>
-<td colspan="2">
-<label>What do you have in mind?</label>
-<textarea id="message" rows="4"></textarea>
-</td>
-</tr>
-
-<tr>
-<td colspan="2" style="text-align:center;">
-<button type="submit">Submit</button>
-</td>
-</tr>
-
-</table>
-
-</form>
-
-<p id="msg"></p>
-
-</div>
-
-<script src="script.js"></script>
-
-</body>
+        <script src="script.js"></script>
+    </body>
 </html>
