@@ -31,10 +31,14 @@ document.getElementById("contactForm").addEventListener("submit", function(event
 // First Name Validation
 function validateFname() {
     let fname = document.getElementById("fname").value.trim();
-    document.getElementById("fnameError").textContent = "";
+    document.getElementById("fnameError").innerHTML = "";
 
     if (fname === "") {
-        document.getElementById("fnameError").textContent = "Field Value need to be filled up";
+        document.getElementById("fnameError").innerHTML = "Field Value need to be filled up";
+        return false;
+    }
+    else if( !/^[a-zA-Z]+$/.test(fname)) {
+        document.getElementById("fnameError").innerHTML = "First name should contain only letters";
         return false;
     }
     return true;
@@ -43,10 +47,14 @@ function validateFname() {
 // Last Name Validation
 function validateLname() {
     let lname = document.getElementById("lname").value.trim();
-    document.getElementById("lnameError").textContent = "";
+    document.getElementById("lnameError").innerHTML = "";
 
     if (lname === "") {
-        document.getElementById("lnameError").textContent = "Field Value need to be filled up";
+        document.getElementById("lnameError").innerHTML = "Field Value need to be filled up";
+        return false;
+    }
+    else if( !/^[a-zA-Z]+$/.test(lname)) {
+        document.getElementById("lnameError").innerHTML = "Last name should contain only letters";
         return false;
     }
     return true;
@@ -55,16 +63,16 @@ function validateLname() {
 // Email Validation
 function validateEmail() {
     let email = document.getElementById("email").value.trim();
-    document.getElementById("emailError").textContent = "";
+    document.getElementById("emailError").innerHTML = "";
 
     let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (email === "") {
-        document.getElementById("emailError").textContent = "Field Value need to be filled up";
+        document.getElementById("emailError").innerHTML = "Field Value need to be filled up";
         return false;
     }
     else if (!emailPattern.test(email)) {
-        document.getElementById("emailError").textContent = "Please enter valid email";
+        document.getElementById("emailError").innerHTML = "Please enter valid email";
         return false;
     }
 
@@ -74,16 +82,16 @@ function validateEmail() {
 // Phone Validation
 function validatePhone() {
     let phone = document.getElementById("phone").value.trim();
-    document.getElementById("phoneError").textContent = "";
+    document.getElementById("phoneError").innerHTML = "";
 
     let phonePattern = /^[0-9]{7,15}$/;
 
     if (phone === "") {
-        document.getElementById("phoneError").textContent = "Field Value need to be filled up";
+        document.getElementById("phoneError").innerHTML = "Field Value need to be filled up";
         return false;
     }
     else if (!phonePattern.test(phone)) {
-        document.getElementById("phoneError").textContent = "Enter valid phone number";
+        document.getElementById("phoneError").innerHTML = "Enter valid phone number";
         return false;
     }
 
@@ -93,10 +101,10 @@ function validatePhone() {
 // Message Validation
 function validateMessage() {
     let message = document.getElementById("message").value.trim();
-    document.getElementById("messageError").textContent = "";
+    document.getElementById("messageError").innerHTML = "";
 
     if (message === "") {
-        document.getElementById("messageError").textContent = "Field Value need to be filled up";
+        document.getElementById("messageError").innerHTML = "Field Value need to be filled up";
         return false;
     }
     return true;
