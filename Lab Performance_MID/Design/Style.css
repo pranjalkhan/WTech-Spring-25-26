@@ -26,4 +26,91 @@ fieldset {
     padding: 20px 24px 24px;
     width: 380px;
 }
+legend {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    padding: 0 6px;
+    background-color: #f0f0f0;
+}
+
+#productTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+#productTable tr {
+    border-bottom: 1px solid #c3c3c3;
+    border-top: 1px solid #c3c3c3;
+}
+
+
+.label-cell {
+    width: 45%;
+    padding: 8px 10px 8px 0;
+    vertical-align: middle;
+}
+
+.input-cell {
+    width: 55%;
+    padding: 8px 0;
+    vertical-align: middle;
+}
+
+label {
+    font-size: 13px;
+    font-weight: normal;
+    color: #000;
+    white-space: nowrap;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 5px 8px;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    color: #000;
+    background-color: #ffffff;
+    border: 1px solid #aaa;
+    border-radius: 2px;
+    outline: none;
+}
+
+input[type="number"]:focus {
+    border-color: #555;
+}
+
+input[readonly] {
+    background-color: #f9f9f9;
+    color: #333;
+    cursor: not-allowed;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input::placeholder {
+    color: #aaa;
+    font-size: 12px;
+}
+
+
+.error {
+    display: block;
+    min-height: 16px;
+    font-size: 12px;
+    color: red;
+}
+
+
+#errorRow .error:empty {
+    display: none;
+}
+
 
