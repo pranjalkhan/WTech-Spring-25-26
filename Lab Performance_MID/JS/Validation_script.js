@@ -30,3 +30,16 @@ function calculateTotal() {
 
     return total;
 }
+
+quantityInput.addEventListener('input', function () {
+    var total = calculateTotal();
+    couponAlertShown = false;
+
+    if (total > 1000 && !couponAlertShown) {
+        couponAlertShown = true;
+
+        setTimeout(function () {
+            alert('You are eligible for a gift coupon!');
+        }, 100);
+    }
+});
