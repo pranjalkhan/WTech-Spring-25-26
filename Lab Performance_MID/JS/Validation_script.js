@@ -1,6 +1,6 @@
 //static data input
-var Unit_Price = 1000;
-var Days = 30;
+var UNIT_PRICE = 1000;
+var DAYS = 30;
 
 var quantityInput = document.getElementById('quantity');
 var totalPriceInput = document.getElementById('totalPrice');
