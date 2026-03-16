@@ -50,14 +50,6 @@ label {
     color: #000;
 }
 
-
-label {
-    font-size: 13px;
-    font-weight: normal;
-    color: #000;
-    white-space: nowrap;
-}
-
 input[type="number"] {
     width: 100%;
     padding: 5px 8px;
@@ -80,13 +72,8 @@ input[readonly] {
     cursor: not-allowed;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-}
-
 input[type="number"] {
-    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 input::placeholder {
