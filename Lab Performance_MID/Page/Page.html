@@ -1,25 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Product Management Page</title>
-        <link rel="stylesheet" href="../Design/style.css">
 
-    </head>
-    <body>
-        <div class="container">
-            <fieldset>
-                <legend>Product Management Page</legend>
-                <table id="producTable">
-                    <tr>
-                        td class="label-cell">
+<head>
+    <title>Product Management Page</title>
+    <link rel="stylesheet" href="../Design/style.css">
+
+</head>
+
+<body>
+  <div class="container">
+        <fieldset>
+            <legend>Product Management Page</legend>
+
+            <table id="productTable">
+
+    
+                <tr>
+                    <td class="label-cell">
                         <label for="unitPrice">Unit Price:</label>
                     </td>
                     <td class="input-cell">
                         <input type="number" id="unitPrice" value="1000" readonly>
                     </td>
-                    </tr>
-                    
-                </table>
-            </fieldset>
-        </div>
-    </body>
+                </tr>
+
+
+                <tr>
+                    <td class="label-cell">
+                        <label for="quantity">Quantity per Day:</label>
+                    </td>
+                    <td class="input-cell">
+                        <input type="number" id="quantity" placeholder="Enter quantity per day" min="0">
+                    </td>
+                </tr>
+
+                <tr id="errorRow">
+                    <td></td>
+                    <td class="input-cell">
+                        <span id="errorMsg" class="error"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="label-cell">
+                        <label for="totalPrice">Total Price for 30
+                            Days:</label>
+                    </td>
+                    <td class="input-cell">
+                        <input type="number" id="totalPrice" value="0" readonly>
+                    </td>
+                </tr>
+
+            </table>
+        </fieldset>
+    </div>
+
+    
+
+
+</body>
