@@ -5,3 +5,5 @@ var Days = 30;
 var quantityInput = document.getElementById('quantity');
 var totalPriceInput = document.getElementById('totalPrice');
 var errorMsg = document.getElementById('errorMsg');
+
+var couponAlertShown = false;
