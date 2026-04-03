@@ -1,0 +1,26 @@
+body{
+    background-color: rgb(227, 30, 30);
+}
+
+h1{
+    text-align: center;
+}
+
+form{
+    width: 600px;
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+}
+
+textarea{
+    width: 100%;
+    padding: 10px;
+}
+
+#result{
+    margin-top: 20px;
+    padding: 10px;
+    background-color: lightyellow;
+    border: 1px solid black;
+}
