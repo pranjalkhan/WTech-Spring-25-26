@@ -1,45 +1,26 @@
-//static data input
-var UNIT_PRICE = 1000;
-var DAYS = 30;
+console.log("Connected Javascript file successfully.");
 
-var quantityInput = document.getElementById('quantity');
-var totalPriceInput = document.getElementById('totalPrice');
-var errorMsg = document.getElementById('errorMsg');
+const price = 1000;
+const days = 30;
 
-var couponAlertShown = false;
+let q = document.getElementById("quantity");
+let t = document.getElementById("totalPrice");
+let e = document.getElementById("errorRow");
 
-function calculateTotal() {
-    var qty = parseFloat(quantityInput.value);
+q.addEventListener("input", function () {
+
+    let qty = parseInt(q.value) || 0;
 
     if (qty < 0) {
-        quantityInput.value = 0;
+        e.textContent = "Quantity cannot be negative. Resetting to 0.";
         qty = 0;
-        errorMsg.textContent = 'Quantity cannot be less than 0.';
+        q.value = 0;
     } else {
-        errorMsg.textContent = '';
+        e.textContent = "";
     }
-
-    if (quantityInput.value === '' || isNaN(qty)) {
-        totalPriceInput.value = 0;
-        couponAlertShown = false;
-        return 0;
-    }
-
-    var total = UNIT_PRICE * qty * DAYS;
-    totalPriceInput.value = total;
-
-    return total;
-}
-
-quantityInput.addEventListener('input', function () {
-    var total = calculateTotal();
-    couponAlertShown = false;
-
-    if (total > 1000 && !couponAlertShown) {
-        couponAlertShown = true;
-
-        setTimeout(function () {
-            alert('You are eligible for a gift coupon!');
-        }, 100);
+    let total = price * qty * days;
+    t.value = total;
+    if (total > 1000) {
+        alert("Congratulations! You are eligible for a gift coupon.");
     }
 });
