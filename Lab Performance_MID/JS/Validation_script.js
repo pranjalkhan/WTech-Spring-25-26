@@ -12,11 +12,11 @@ q.addEventListener("input", function () {
     let qty = parseInt(q.value) || 0;
 
     if (qty < 0) {
-        e.textContent = "Quantity cannot be negative. Resetting to 0.";
+        e.innerHTML = "Quantity cannot be negative. Resetting to 0.";
         qty = 0;
         q.value = 0;
     } else {
-        e.textContent = "";
+        e.innerHTML = "";
     }
     let total = price * qty * days;
     t.value = total;
