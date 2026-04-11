@@ -61,7 +61,18 @@ echo "<br>";
 $cars = array("Course"=> "WebTechnology", "Section"=>"R");
 echo $cars["Course"];
 
+echo "<br>";
 
+print_r($car);
+
+echo "<br>";
+$x = "10";   // string 
+$y = 5;      // integer 
+$z = $x + $y; // string "10" is converted to integer 10 
+ 
+echo $z; // Output: 15 
+echo "<br>";
+echo gettype($z); // Output: integer 
 
 ?>
 
