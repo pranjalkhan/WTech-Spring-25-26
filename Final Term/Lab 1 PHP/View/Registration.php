@@ -34,14 +34,17 @@ include "../Controller/Registrationvalidation.php";
                 </tr>
                 <tr>
                     <td><label for ="gender"> Gender: </label></td>
-                    <td><input type = "radio" id = "gender" name = "gender" value = "female">   Female
-                        <input type = "radio" id = "gender" name = "gender" value = "male">     Male
-                        <input type = "radio" id = "gender" name = "gender" value = "other">    Other
+                    <td><input type = "radio" id = "gender" name = "gender" value = "female">   
+                    <label for="female">Female</label>
+                        <input type = "radio" id = "gender" name = "gender" value = "male"> 
+                        <label for="male">Male</label>
+                        <input type = "radio" id = "gender" name = "gender" value = "other">    
+                        <label for="other">Other</label>    
                     </td>
                     <td> <p style = 'color: red'>*</p> </td>
-
+                </tr>
                 <tr>
-                    <td><input type = "submit" id = "submit" name = "submit" </td>
+                    <td><input type = "submit" id = "submit" name = "submit" ></td>
                 </tr>
             </table>
         </form>
