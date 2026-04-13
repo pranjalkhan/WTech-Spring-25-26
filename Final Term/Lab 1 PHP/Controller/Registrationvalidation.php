@@ -8,7 +8,7 @@ $gender="";
 
 $validemail = "";
 $validwebsite = "";
-$validgender = "";
+
 
 if($_SERVER["REQUEST_METHOD"]=="POST")
 {
@@ -17,6 +17,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     $website = $_POST["website"];
     $comment = $_POST["comment"];
     
+
+    $name = $_REQUEST["name"];
+    $email = $_REQUEST["email"];
+    $website = $_REQUEST["website"];
+    $comment = $_REQUEST["comment"];
+    
+
     if(isset($_POST["gender"]))
     {
         $gender = $_POST["gender"];
@@ -77,6 +84,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     {
         echo "Gender is required<br>";
     }
+    
+    if(!empty($comment))
+    {
+        echo "Comment: ".$comment."<br>";
+    }
+    else
+    {
+        echo "Comment is required<br>";
+    }
+    
 }
 
 ?>

@@ -11,7 +11,7 @@ include "../Controller/Registrationvalidation.php";
         <form method ="post" action="">
             <table>
                 <tr>
-                    <td><p style = 'color: red '> * Required Field </p></td><br>
+                    <td><p style = 'color: red '> * required Field </p></td><br>
                 </tr>
                 <tr>
                     <td> <label for ="UserName"> User Name: </label></td>
