@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+}
+.container {
+    margin-top: 40px;
+}
+
+fieldset {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid black;
+}
+legend {
+    font-weight: bold;
+    text-align: left;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+table td {
+    padding: 8px 4px;
+}
+label {
+    font-size: 13px;
+    display: block;
+    margin-bottom: 4px;
+}
+.error {
+    color: red;
+    font-size: 12px;
+    text-align: left;
+}
+input {
+    padding: 6px 8px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #aaa;
+    font-size: 13px;
+}
+
+
