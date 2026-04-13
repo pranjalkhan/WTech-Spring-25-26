@@ -32,11 +32,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
     if(!empty($name) && strlen($name)>=5)
     {
-        echo "User Name: ".$name."<br>";
+        echo "Name: ".$name."<br>";
     }
     else
     {
-        echo "UserName must be greater than 5 char<br>";
+        echo "Name must be greater than 5 char<br>";
     }
 
     

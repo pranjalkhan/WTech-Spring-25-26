@@ -14,13 +14,13 @@ include "../Controller/Registrationvalidation.php";
                     <td><p style = 'color: red '> * required Field </p></td><br>
                 </tr>
                 <tr>
-                    <td> <label for ="UserName"> User Name: </label></td>
+                    <td> <label for ="Name"> Name: </label></td>
                     <td> <input type ="text" id = "name" name = "name"> <?php echo $name ?></td>
                     <td> <p style = 'color: red'>*</p> </td>
                 </tr>
                 
                 <tr>
-                    <td> <label for ="email"> Email: </label></td>
+                    <td> <label for ="email"> E-mail: </label></td>
                     <td> <input type = "email" id = "email" name = "email"><?php echo $email ?></td>
                     <td> <p style = 'color: red'>*</p> </td>
                 </tr>
