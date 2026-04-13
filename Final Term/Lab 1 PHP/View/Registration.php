@@ -30,7 +30,7 @@ include "../Controller/Registrationvalidation.php";
                 </tr>
                 <tr>
                     <td> <label for ="comment"> Comment: </label></td>
-                    <td> <textarea id = "comment" name = "comment" rows = "5" cols = "40"><?php echo $comment ?></textarea></td>
+                    <td> <textarea id = "comment" name = "comment" rows = "5" cols = "40"><?php echo $comment?></textarea></td>
                 </tr>
                 <tr>
                     <td><label for ="gender"> Gender: </label></td>
