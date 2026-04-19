@@ -14,7 +14,7 @@ include "../Controller/Registrationvalidation.php";
                     <td><p style = 'color: red '> * required Field </p></td><br>
                 </tr>
                 <tr>
-                    <td> <label for ="Name"> Name: </label></td>
+                    <td> <label for ="name"> Name: </label></td>
                     <td> <input type ="text" id = "name" name = "name"> <?php echo $name ?></td>
                     <td> <p style = 'color: red'>*</p> </td>
                 </tr>
@@ -34,11 +34,11 @@ include "../Controller/Registrationvalidation.php";
                 </tr>
                 <tr>
                     <td><label for ="gender"> Gender: </label></td>
-                    <td><input type = "radio" id = "gender" name = "gender" value = "female">   
+                    <td><input type = "radio" id = "female" name = "gender" value = "female">   
                     <label for="female">Female</label>
-                        <input type = "radio" id = "gender" name = "gender" value = "male"> 
+                        <input type = "radio" id = "male" name = "gender" value = "male"> 
                         <label for="male">Male</label>
-                        <input type = "radio" id = "gender" name = "gender" value = "other">    
+                        <input type = "radio" id = "other" name = "gender" value = "other">    
                         <label for="other">Other</label>    
                     </td>
                     <td> <p style = 'color: red'>*</p> </td>
