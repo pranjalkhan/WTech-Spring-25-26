@@ -7,7 +7,7 @@ $email="";
 $website="";
 $comment="";
 $gender="";
-
+$datafile ="../data.json";
 $validemail = "";
 $validwebsite = "";
 
@@ -33,6 +33,37 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         echo "Name: ".$name."<br>";
         $_SESSION["name"] = $name;
         setcookie("name",$name,time()+3600);
+        $formdata = array( "Name"=>$name,"Email"=>$email,"Website"=>$website,"Comment"=>$comment,"Gender"=>$gender);
+        if(file_exists($datafile))
+        {
+            $existdata = file_get_contents($datafile);
+            $tempdata = json_decode($existdata, true);
+        }
+        else{
+            $tempdata = array();
+        }
+
+        if(!is_array($tempdata))
+        {
+            $tempdata = array(); 
+        }
+
+        $tempdata[] = $formdata;
+
+        $jsondata = json_encode($tempdata, JSON_PRETTY_PRINT);
+
+        if(file_put_contents($datafile,$jsondata)!== false)
+        {
+            echo "Data Saved<br>";
+        }
+        else{
+            echo "Please Try Again<br>";
+        }
+
+        $data = file_get_contents($datafile);
+        $mydata = json_decode($data);
+    }
+   
     }
     else
     {
