@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         $mydata = json_decode($data);
     }
    
-    }
+    
     else
     {
         echo "Name must be greater than 5 char<br>";
