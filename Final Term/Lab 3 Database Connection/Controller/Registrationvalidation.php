@@ -1,154 +1,106 @@
-<?php 
+<?php
 include "../Model/db.php";
 session_start();
 
-$name="";
-$password="";
-$email="";
-$website="";
-$comment="";
-$gender="";
-$datafile ="../data.json";
-$validemail = "";
-$validwebsite = "";
+$name = "";
+$password = "";
+$email = "";
+$website = "";
+$comment = "";
+$gender = "";
 
-if($_SERVER["REQUEST_METHOD"]=="POST")
-{
-    $name = $_POST["name"];
-    $password = $_POST["password"];
-    $email = $_POST["email"];
-    $website = $_POST["website"];
-    $comment = $_POST["comment"];
 
-    $name = $_REQUEST["name"];
-    $email = $_REQUEST["email"];
-    $website = $_REQUEST["website"];
-    $comment = $_REQUEST["comment"];
+$data_file = "../data.json";
 
-    if(isset($_POST["gender"]))
-    {
-        $gender = $_POST["gender"];
-    }
 
-    if(!empty($name) && strlen($name)>=5)
-    {
-        echo "Name: ".$name."<br>";
-        $_SESSION["name"] = $name;
-        setcookie("name",$name,time()+3600);
-        $formdata = array( "Name"=>$name,"Email"=>$email,"Website"=>$website,"Comment"=>$comment,"Gender"=>$gender);
-        if(file_exists($datafile))
-        {
-            $existdata = file_get_contents($datafile);
-            $tempdata = json_decode($existdata, true);
-        }
-        else{
-            $tempdata = array();
-        }
-
-        if(!is_array($tempdata))
-        {
-            $tempdata = array(); 
-        }
-
-        $tempdata[] = $formdata;
-
-        $jsondata = json_encode($tempdata, JSON_PRETTY_PRINT);
-
-        if(file_put_contents($datafile,$jsondata)!== false)
-        {
-            echo "Data Saved<br>";
-        }
-        else{
-            echo "Please Try Again<br>";
-        }
-
-        $data = file_get_contents($datafile);
-        $mydata = json_decode($data);
-    }
-   
+if($_SERVER["REQUEST_METHOD"]=="POST") {
+    // inputs from form
+    $name = $_POST["name"] ?? "";
+    $password = $_POST["password"] ?? "";
+    $email = $_POST["email"] ?? "";
+    $website = $_POST["website"] ?? "";
+    $comment = $_POST["comment"] ?? "";
+    $gender = $_POST["gender"] ?? "";
     
-    else
-    {
-        echo "Name must be greater than 5 char<br>";
-    }
+    $is_all_valid = true;
 
-    
-    if(!empty($email))
-    {
-        if(preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $email))
-        {
-            $validemail = $email;
-            echo "Email: ".$validemail."<br>";
 
-            $_SESSION["email"] = $validemail;
-            setcookie("email",$validemail,time()+3600);
-        }
-        else
-        {
-            echo "Invalid Email Format<br>";
-        }
-    }
-    else
-    {
-        echo "Email is required<br>";
-    }
-
-    
-    if(!empty($website))
-    {
-        if(preg_match("/\b(?:https?:\/\/|www\.)\S+\.\S+\b/i", $website))
-        {
-            $validwebsite = $website;
-            echo "Website: ".$validwebsite."<br>";
-
-            $_SESSION["website"] = $validwebsite;
-            setcookie("website",$validwebsite,time()+3600);
-        }
-        else
-        {
-            echo "Invalid Website URL<br>";
-        }
-    }
-    else
-    {
-        echo "Website is required<br>";
-    }
-
-    
-    if(!empty($gender))
-    {
-        echo "Gender: ".$gender."<br>";
-
-        $_SESSION["gender"] = $gender;
-        setcookie("gender",$gender,time()+3600);
-    }
-    else
-    {
-        echo "Gender is required<br>";
+    // name validation
+    if(empty($name) || strlen($name) < 5) {
+        $name = "Name can't be empty and must need to be at least 5 letters";
+        $is_all_valid = false;
     }
     
-    if(!empty($comment))
-    {
-        echo "Comment: ".$comment."<br>";
 
-        $_SESSION["comment"] = $comment;
-        setcookie("comment",$comment,time()+3600);
-    }
-    else
-    {
-        echo "Comment is required<br>";
+    // pass validation
+    if(empty($password) || strlen($password) > 4) {
+        $password = "Password can't be empty and can't have more than 4 chars.";
+        $is_all_valid = false;
     }
     
-    // database entry
-    $db = new db();
-    $result = $db->signup($name , , $validemail, $validwebsite, $comment, $gender);
-    if($result)
-    {
-        echo "Data inserted successfully into the database.";
+    // email validation
+    if(empty($email) || !preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $email)) {
+        $is_all_valid = false;
+        $email = "Enter a valid email address";
     }
-    else
-    {
-        echo "Error inserting data into the database: " . $db->error;
+    
+    // website
+    $url_check = "/^(https?:\/\/)?(www\.)?[a-zA-Z0-9][a-zA-Z0-9-]*\.[a-zA-Z]{2,}([\/?#][a-zA-Z0-9-._~:\/?#\[\]@!$&'()*+,;=]*)?$/";
+    if(empty($website) || !preg_match($url_check , $website)) {
+        $is_all_valid = false;
+        $website = "provide a valid website.";
+    }
+    
+    if(empty($gender)) {
+        $is_all_valid = false;
+        $gender = "select a gender.";
+    }
+
+
+    if($is_all_valid) {
+        // set cookie
+        setcookie("name" , $name , time() + (86400 * 30) , "/");
+
+        // format data
+        $formdata = array("Name" => $name,"Password" => $password,"Website" => $website,"Comment" => $comment,"Gender" => $gender);
+        
+        // load json data
+        if(file_exists($data_file)) {
+            $existing = file_get_contents($data_file);
+            $existing_data = json_decode($existing , true);
+
+            if(!is_array($existing_data)) {
+               $existing_data = array();    
+            }
+        }
+        else {
+            $existing_data = array();
+        }
+        
+        // add current data with existing data
+        $existing_data[] = $formdata;
+        $json_data = json_encode($existing_data , JSON_PRETTY_PRINT);
+        file_put_contents($data_file , $json_data);
+
+
+        // database entry
+        $database = new db();
+        $result = $database->add_new_user($name,$password,$email,$website,$comment,$gender);
+        
+        if($result) {
+           $_SESSION["registration_success"] = "Registration done. Please login";
+           header("Location: ../View/login.php");
+           exit;
+        }else {
+            echo "registration failed: ".$result;
+        }
+        
+    }
+    
+    if(isset($_SESSION["success"])) {
+        echo "<p style='color:green;'>{$_SESSION['success']}</p>";
+        unset($_SESSION['success']);
     }
 }
+
 ?>

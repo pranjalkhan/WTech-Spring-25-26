@@ -1,65 +1,60 @@
 <?php
-include "../Controller/Registrationvalidation.php";
+include "../Controller/RegistrationValidation.php";
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Registration Log In Form</title>
+        <title>Registration Form</title>
     </head>
     <body>
-        <form method ="post" action="">
+        <form method="post" action="">
+            <h2>PHP Validation Example</h2>
+            <p style="color: red">* required field</p>
             <table>
                 <tr>
-                    <td><p style = 'color: red '> * required Field </p></td><br>
+                    <td>User Name:</td>
+                    <td><input type="text" name="name"></td>
+                    <td> <p style = 'color: red'>*</p></td>
+                    <td><?php echo $name; ?></td>
                 </tr>
                 <tr>
-                    <td> <label for ="name"> Name: </label></td>
-                    <td> <input type ="text" id = "name" name = "name"> <?php echo $name ?></td>
+                    <td>Password:</td>
+                    <td><input type="password" name="password"></td>
                     <td> <p style = 'color: red'>*</p> </td>
+                    <td><?php echo $password; ?></td>
                 </tr>
-
                 <tr>
-                    <td>
-                        <label for="password">password: </label>
-                    </td>
-                    <td>
-                        <input type="password" id="password" name="password">
-                    </td>
-                    <td>
-                        <p style='color: red'>*</p>
-                    </td>
-
+                    <td>Email:</td>
+                    <td><input type="email" name = "email"></td>
+                    <td><p style="color: red">*</p></td>
+                    <td><?php echo $email?></td>
                 </tr>
-                
                 <tr>
-                    <td> <label for ="email"> E-mail: </label></td>
-                    <td> <input type = "email" id = "email" name = "email"><?php echo $email ?></td>
+                    <td>Website:</td>
+                    <td><input type="text" name="website"></td>
                     <td> <p style = 'color: red'>*</p> </td>
+                    <td><?php echo $website; ?></td>
                 </tr>
                 <tr>
-                    <td> <label for ="website"> Website: </label></td>
-                    <td> <input type = "text" id = "website" name = "website"><?php echo $website ?></td>
+                    <td>Comment:</td>
+                    <td><textarea cols="20" rows="5" name="comment"></textarea> </td>
+                    <td><?php echo $comment; ?></td>
                 </tr>
                 <tr>
-                    <td> <label for ="comment"> Comment: </label></td>
-                    <td> <textarea id = "comment" name = "comment" rows = "5" cols = "40"><?php echo $comment?></textarea></td>
-                </tr>
-                <tr>
-                    <td><label for ="gender"> Gender: </label></td>
-                    <td><input type = "radio" id = "female" name = "gender" value = "female">   
-                    <label for="female">Female</label>
-                        <input type = "radio" id = "male" name = "gender" value = "male"> 
-                        <label for="male">Male</label>
-                        <input type = "radio" id = "other" name = "gender" value = "other">    
-                        <label for="other">Other</label>    
+                    <td>Gender:</td>
+                    <td>
+                        <input type="radio" name="gender" value="Female" >Female <?php if($gender == "Female") echo " <span style='color: green;'>checked</span>"; ?>
+                        <input type="radio" name="gender" value="Male"> Male <?php if($gender == "Male") echo " <span style='color: green;'>checked</span>"; ?>
+                        <input type="radio" name="gender" value="Other"> Other <?php if($gender == "Other") echo " <span style='color: green;'>checked</span>"; ?>
                     </td>
                     <td> <p style = 'color: red'>*</p> </td>
                 </tr>
                 <tr>
-                    <td><input type = "submit" id = "submit" name = "submit" ></td>
+                    <td colspan="2"><input type="submit" value="Submit"></td>
                 </tr>
             </table>
         </form>
+        
     </body>
 </html>

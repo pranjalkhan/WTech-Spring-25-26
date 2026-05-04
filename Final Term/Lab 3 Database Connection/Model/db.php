@@ -1,29 +1,43 @@
 <?php
 class db{
-    
-    function databaseConnection() {
-        $host = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "registrationdatabase";
+    function db_connection() {
+        $db_host = "localhost";
+        $db_user = "root";
+        $db_password = "";
+        $db_name = "registrationdatabase";
 
-        $connection = mysqli_connect($host, $username, $password, $dbname);
-        if($connection->connect_error){
-            die("Connection failed: " . $connection->connect_error);
+        $connection = new mysqli($db_host , $db_user , $db_password , $db_name);
+        if($connection->connect_error) {
+            die("Please connect the database: ".$connection->connect_error);
         }
         return $connection;
     }
-    
-    function signup($name, $password, $email, $website, $comment, $gender) {
-        $connection = $this->databaseConnection();
-        $tablename = "users";
-        $sql = "INSERT INTO ".$tablename."(name, password, email, website, comment, gender) VALUES ('".$name."','".$password."','".$email."','".$website."','".$comment."','".$gender."')";
-        $result = $connection->query($sql);
-        $connection->close();
-        return $result;
+
+    function add_new_user(string $name,string $password,string $email,string $website, string $comment,string $gender) {
+       $connection = $this->db_connection();
+       $tablename = "users";
+
+       $sql_query = "INSERT INTO ".$tablename." (name,password,email,website,comment,gender) VALUES ('".$name."','".$password."','".$email."','".$website."','".$comment."','".$gender."')";
+       $result = $connection->query($sql_query);
+       $connection->close();
+
+       return $result;
     }
+    
+    function login_for_user(string $name , string $password) {
+        $connection = $this->db_connection();
+        $tablename = "users";
+
+        $sql_query = "SELECT * FROM ".$tablename." WHERE name = '".$name."' AND password = '".$password."'";
+        $result = $connection->query($sql_query);
+
+        $user_data = [];
+        if($result && $result->num_rows > 0) {
+            $user_data = $result->fetch_assoc();
+        }
+        $connection->close();
+        return $user_data;
+    }
+
 }
-
-
-
 ?>
