@@ -1,5 +1,5 @@
 <?php
-include "../Controller/RegistrationValidation.php";
+include "../Controller/registrationValidation.php";
 ?>
 
 <!DOCTYPE html>
