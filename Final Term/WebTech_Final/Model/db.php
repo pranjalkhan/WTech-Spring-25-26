@@ -43,6 +43,25 @@ class db{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    function getLatestStudentAttemptId($connection, $student_id)
+    {
+        $student_id = (int)$student_id;
+        $sql = "SELECT a.id
+                FROM attempts a
+                JOIN users attempt_user ON a.student_id = attempt_user.id
+                LEFT JOIN users session_user ON session_user.id = '".$student_id."'
+                WHERE (a.student_id = '".$student_id."'
+                       OR (session_user.email IS NOT NULL
+                           AND session_user.role = 'student'
+                           AND attempt_user.email = session_user.email))
+                  AND a.completed_at IS NOT NULL
+                ORDER BY a.completed_at DESC
+                LIMIT 1";
+        $result = $connection->query($sql);
+        $row = $result->fetch_assoc();
+        return $row ? $row["id"] : 0;
+    }
+
     function getStudentResults($connection, $student_id)
     {
         $student_id = (int)$student_id;
