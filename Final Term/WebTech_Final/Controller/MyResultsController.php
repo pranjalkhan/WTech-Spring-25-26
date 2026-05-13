@@ -5,7 +5,7 @@ include "../Model/db.php";
 
 // Only students can access this page
 if (!isset($_SESSION["user_id"]) || $_SESSION["role"] !== "student") {
-    Header("Location: ../View/leaderboard.php");
+    Header("Location: ../View/login.php");
     exit;
 }
 
