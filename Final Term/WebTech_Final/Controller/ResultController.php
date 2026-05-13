@@ -5,7 +5,7 @@ include "../Model/db.php";
 
 // Redirect if not logged in
 if (!isset($_SESSION["user_id"])) {
-    Header("Location: ../View/login.php");
+    Header("Location: ../View/leaderboard.php");
     exit;
 }
 

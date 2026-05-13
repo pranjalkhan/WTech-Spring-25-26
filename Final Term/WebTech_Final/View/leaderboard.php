@@ -16,7 +16,6 @@
         <?php elseif ($_SESSION["role"] === "instructor"): ?>
             <a href="analytics.php">📊 Analytics</a>
         <?php endif; ?>
-        <a href="login.php?logout=1">Logout</a>
     <?php endif; ?>
 </nav>
 
