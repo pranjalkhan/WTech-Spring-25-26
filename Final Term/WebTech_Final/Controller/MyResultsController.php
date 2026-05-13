@@ -12,8 +12,11 @@ include "../Model/db.php";
 $database   = new db();
 $connection = $database->connection();
 
-// Use session user_id after Task 1 merge; hardcoded to 1 for standalone demo
-$student_id = isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : 1;
+// Use the logged-in student when available; otherwise keep the standalone demo user.
+$student_id = 1;
+if (isset($_SESSION["user_id"]) && (!isset($_SESSION["role"]) || $_SESSION["role"] === "student")) {
+    $student_id = (int)$_SESSION["user_id"];
+}
 
 $results = $database->getStudentResults($connection, $student_id);
 ?>

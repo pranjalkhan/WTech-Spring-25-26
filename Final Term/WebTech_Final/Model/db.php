@@ -53,26 +53,43 @@ class db {
                         q.title, q.total_marks
                  FROM attempts a
                  JOIN quizzes q ON a.quiz_id = q.id
-                 WHERE a.student_id = ? AND a.completed_at IS NOT NULL
+                 JOIN users attempt_user ON a.student_id = attempt_user.id
+                 LEFT JOIN users session_user ON session_user.id = ?
+                 WHERE (a.student_id = ?
+                        OR (session_user.email IS NOT NULL
+                            AND session_user.role = 'student'
+                            AND attempt_user.email = session_user.email))
+                   AND a.completed_at IS NOT NULL
                  ORDER BY a.completed_at DESC";
         $stmt = $connection->prepare($sql);
-        $stmt->bind_param("i", $student_id);
+        $stmt->bind_param("ii", $student_id, $student_id);
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
     // ── GET INSTRUCTOR'S QUIZ LIST ───────────────────────────────────
     function getInstructorQuizzes($connection, $instructor_id) {
-        $sql  = "SELECT id, title FROM quizzes WHERE instructor_id = ?";
+        $sql  = "SELECT q.id, q.title, COUNT(a.id) AS attempt_count
+                 FROM quizzes q
+                 LEFT JOIN attempts a
+                    ON a.quiz_id = q.id AND a.completed_at IS NOT NULL
+                 LEFT JOIN users session_user ON session_user.id = ?
+                 LEFT JOIN users quiz_owner ON quiz_owner.id = q.instructor_id
+                 WHERE q.instructor_id = ?
+                    OR (session_user.email IS NOT NULL
+                        AND session_user.role = 'instructor'
+                        AND quiz_owner.email = session_user.email)
+                 GROUP BY q.id, q.title, q.created_at
+                 ORDER BY attempt_count DESC, q.created_at DESC, q.id DESC";
         $stmt = $connection->prepare($sql);
-        $stmt->bind_param("i", $instructor_id);
+        $stmt->bind_param("ii", $instructor_id, $instructor_id);
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
     // ── GET ALL ATTEMPTS FOR ONE QUIZ (INSTRUCTOR ANALYTICS) ────────
     function getQuizAttempts($connection, $quiz_id) {
-        $sql  = "SELECT u.name AS student_name, a.score, q.total_marks,
+        $sql  = "SELECT a.id AS attempt_id, u.name AS student_name, a.score, q.total_marks,
                         TIMEDIFF(a.completed_at, a.started_at) AS duration,
                         a.completed_at
                  FROM attempts a

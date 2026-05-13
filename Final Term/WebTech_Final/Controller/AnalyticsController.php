@@ -12,8 +12,11 @@ include "../Model/db.php";
 $database   = new db();
 $connection = $database->connection();
 
-// Use session user_id after Task 1 merge; hardcoded to 4 (instructor) for standalone demo
-$instructor_id = isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : 4;
+// Use the logged-in instructor when available; otherwise keep the standalone demo user.
+$instructor_id = 4;
+if (isset($_SESSION["user_id"]) && (!isset($_SESSION["role"]) || $_SESSION["role"] === "instructor")) {
+    $instructor_id = (int)$_SESSION["user_id"];
+}
 
 $quizzes       = $database->getInstructorQuizzes($connection, $instructor_id);
 $attempts      = [];

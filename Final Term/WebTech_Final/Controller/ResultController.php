@@ -11,23 +11,31 @@ include "../Model/db.php";
 
 $attempt   = [];
 $breakdown = [];
+$result_error = "";
 
-$attempt_id = isset($_GET["attempt_id"]) ? (int)$_GET["attempt_id"] : 0;
+$attempt_id = 0;
+if (isset($_GET["attempt_id"])) {
+    $attempt_id = (int)$_GET["attempt_id"];
+} elseif (isset($_GET["id"])) {
+    $attempt_id = (int)$_GET["id"];
+}
 
 if ($attempt_id > 0) {
     $database   = new db();
     $connection = $database->connection();
 
     $attempt   = $database->getAttempt($connection, $attempt_id);
-    $breakdown = $database->getAnswerBreakdown($connection, $attempt_id);
+    if (!empty($attempt)) {
+        $breakdown = $database->getAnswerBreakdown($connection, $attempt_id);
+    }
 }
 
 if (empty($attempt)) {
-    die("Attempt not found.");
+    $result_error = "Attempt not found. Please open a saved attempt from My Results or Analytics.";
+} else {
+    $score   = $attempt["score"];
+    $total   = $attempt["total_marks"];
+    $percent = $total > 0 ? ($score / $total) * 100 : 0;
+    $pass    = $percent >= 60;
 }
-
-$score   = $attempt["score"];
-$total   = $attempt["total_marks"];
-$percent = $total > 0 ? ($score / $total) * 100 : 0;
-$pass    = $percent >= 60;
 ?>
