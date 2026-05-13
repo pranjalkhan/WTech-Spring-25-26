@@ -3,16 +3,19 @@ session_start();
 
 include "../Model/db.php";
 
-// Only instructors can access this page
-if (!isset($_SESSION["user_id"]) || $_SESSION["role"] !== "instructor") {
-    Header("Location: ../View/leaderboard.php");
-    exit;
-}
+// ── Auth check — instructor only (Task 1 sets $_SESSION — uncomment after merging) ──
+// if (!isset($_SESSION["user_id"]) || $_SESSION["role"] !== "instructor") {
+//     Header("Location: ../View/leaderboard.php");
+//     exit;
+// }
 
 $database   = new db();
 $connection = $database->connection();
 
-$quizzes       = $database->getInstructorQuizzes($connection, $_SESSION["user_id"]);
+// Use session user_id after Task 1 merge; hardcoded to 4 (instructor) for standalone demo
+$instructor_id = isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : 4;
+
+$quizzes       = $database->getInstructorQuizzes($connection, $instructor_id);
 $attempts      = [];
 $selected_quiz = "";
 

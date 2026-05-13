@@ -16,15 +16,21 @@
         <?php elseif ($_SESSION["role"] === "instructor"): ?>
             <a href="analytics.php">📊 Analytics</a>
         <?php endif; ?>
+    <?php else: ?>
+        <!-- Task 1 handles login/logout links after merge -->
+        <a href="my_results.php">📋 My Results</a>
+        <a href="analytics.php">📊 Analytics</a>
     <?php endif; ?>
 </nav>
 
 <div class="container">
+
     <div class="refresh-row">
         <h2>🏆 Leaderboard — Top 10</h2>
         <span id="refresh-countdown">Refreshing in 30s</span>
     </div>
 
+    <!-- Top 10 students by cumulative score (SUM of attempts.score GROUP BY student_id) -->
     <table>
         <thead>
             <tr>
@@ -49,9 +55,10 @@
             <?php endif; ?>
         </tbody>
     </table>
+
 </div>
 
-<!-- AJAX JS from Controller/ajax/ folder -->
+<!-- AJAX auto-refresh every 30 seconds -->
 <script src="../Controller/ajax/ajax.js"></script>
 
 </body>

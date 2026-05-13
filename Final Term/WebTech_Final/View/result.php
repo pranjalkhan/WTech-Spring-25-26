@@ -14,17 +14,23 @@
 </nav>
 
 <div class="container">
-    <h2>📝 Quiz Result — <?php echo $attempt["title"]; ?></h2>
 
+    <h2>📝 Result — <?php echo htmlspecialchars($attempt["title"]); ?></h2>
+
+    <!-- Total Score -->
     <div class="score-box">
         Score: <?php echo $score; ?> / <?php echo $total; ?>
-        (<?php echo round($percent, 1); ?>%)
+        &nbsp;(<?php echo round($percent, 1); ?>%)
     </div>
 
+    <!-- Pass / Fail Banner (pass threshold = 60%) -->
     <div class="banner <?php echo $pass ? "pass" : "fail"; ?>">
-        <?php echo $pass ? "✅ PASS" : "❌ FAIL"; ?>
+        <?php echo $pass ? "✅ PASS — Well done!" : "❌ FAIL — Better luck next time!"; ?>
     </div>
 
+    <!-- Question-by-question breakdown table -->
+    <!-- Selected answer highlighted GREEN if correct, RED if wrong -->
+    <!-- Correct answer always shown in last column -->
     <h3>Question Breakdown</h3>
 
     <table>
@@ -34,21 +40,29 @@
                 <th>Question</th>
                 <th>Your Answer</th>
                 <th>Correct Answer</th>
-                <th>Result</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($breakdown as $i => $row): ?>
-            <tr class="<?php echo $row["is_correct"] ? "correct" : "wrong"; ?>">
+            <tr>
                 <td><?php echo $i + 1; ?></td>
                 <td><?php echo htmlspecialchars($row["question_text"]); ?></td>
-                <td><?php echo htmlspecialchars($row["selected_answer"]); ?></td>
-                <td><?php echo htmlspecialchars($row["correct_answer"]); ?></td>
-                <td><?php echo $row["is_correct"] ? "✅" : "❌"; ?></td>
+
+                <!-- Highlight selected answer: green = correct, red = wrong -->
+                <td class="<?php echo $row["is_correct"] ? "answer-correct" : "answer-wrong"; ?>">
+                    <?php echo htmlspecialchars($row["selected_answer"]); ?>
+                    <?php echo $row["is_correct"] ? " ✅" : " ❌"; ?>
+                </td>
+
+                <!-- Always show the correct answer -->
+                <td class="answer-correct">
+                    <?php echo htmlspecialchars($row["correct_answer"]); ?>
+                </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+
 </div>
 
 </body>

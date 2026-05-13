@@ -3,14 +3,14 @@ session_start();
 
 include "../Model/db.php";
 
-// Redirect if not logged in
-if (!isset($_SESSION["user_id"])) {
-    Header("Location: ../View/leaderboard.php");
-    exit;
-}
+// ── Auth check (Task 1 sets $_SESSION — uncomment after merging) ──
+// if (!isset($_SESSION["user_id"])) {
+//     Header("Location: ../View/leaderboard.php");
+//     exit;
+// }
 
-$attempt    = [];
-$breakdown  = [];
+$attempt   = [];
+$breakdown = [];
 
 $attempt_id = isset($_GET["attempt_id"]) ? (int)$_GET["attempt_id"] : 0;
 
@@ -26,7 +26,6 @@ if (empty($attempt)) {
     die("Attempt not found.");
 }
 
-// Pass/Fail calculation
 $score   = $attempt["score"];
 $total   = $attempt["total_marks"];
 $percent = $total > 0 ? ($score / $total) * 100 : 0;
